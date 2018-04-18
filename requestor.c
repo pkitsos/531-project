@@ -5,8 +5,17 @@
 // Assignment: Network Communication on ARM
 // Author: Panayioti Kitsos - Date: 4/18/18
 // Compile with:
-// 			Host machine: make all
-//			QEMU machine: make -f makefile-arm
+// 			Host linux machine (x86_64): (make all)
+//					gcc   -c requestor.c -o requestor.o
+//					gcc   -o hw requestor.o -L/usr/lib/x86-64-linux-gnu -lcurl -lpthread
+//			
+//			QEMU linux machine (AMD): (make -f makefile-arm)
+//					/home/USER/buildroot-2018.02/output/host/usr/bin/arm-linux-gcc --sysroot=/home/USER/buildroot-2018.02/output/staging  -c requestor.c -o requestor.o
+//					/home/USER/buildroot-2018.02/output/host/usr/bin/arm-linux-gcc --sysroot=/home/USER/buildroot-2018.02/output/staging  -o hw requestor.o  -lcurl -uClibc -lc
+//
+//			Run with:
+//					./hw [URL_FLAG] '<url>' [VERB_FLAG] '<content>'      
+//						(use -h/--help for usage options)
 /***************************************************************************************************************************/
 #include<stdio.h>
 #include<string.h>
@@ -18,7 +27,7 @@
 
 // function for usage info
 void usage(void) {
-				printf("\nUSAGE: ./test [URL] '<url>' [VERB] '<content>'                           \n\n");
+				printf("\nUSAGE: ./hw [URL] '<url>' [VERB] '<content>'                           \n\n");
 				printf("%40s\n", "HELP MENU");				
 				printf("---------------------------------------------------------------------------------------------\n");
 				printf("%-15s%-15s%-35s%-25s\n","FLAGS", "ARGUMENTS", "EXAMPLE ARG FORMAT", "SUMMARY");
