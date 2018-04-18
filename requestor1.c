@@ -1,10 +1,3 @@
-/***************************************************************************************************************************/
-// University of New Mexico - School of Engineering
-// Department of Electical and Computer Engineering
-// ECE 531: Introduction to IoT - Dr. Lamb, Dr. Papapanagioutou
-// Assignment: Network Communication on ARM
-// Author: Panayioti Kitsos - Date: 4/18/18
-/***************************************************************************************************************************/
 #include<stdio.h>
 #include<string.h>
 #include<getopt.h>
@@ -15,27 +8,25 @@
 
 // function for usage info
 void usage(void) {
-				printf("\nUSAGE: ./test [URL] '<url>' [VERB] '<content>'                           \n\n");
-				printf("%40s\n", "HELP MENU");				
-				printf("---------------------------------------------------------------------------------------------\n");
-				printf("%-15s%-15s%-35s%-25s\n","FLAGS", "ARGUMENTS", "EXAMPLE ARG FORMAT", "SUMMARY");
-				printf("---------------------------------------------------------------------------------------------\n");
-				printf("%-15s%-15s%-35s%-25s\n","-h/--help", "N/A", "N/A", "help and usage options");
-				printf("%-15s%-15s%-35s%-25s\n","-g/--get", "N/A", "N/A", "[VERB] http get option");
-				printf("%-15s%-15s%-35s%-25s\n","-o/--post", "'content'", "'Post this text'", "[VERB] http post option");
-				printf("%-15s%-15s%-35s%-25s\n","-p/--put", "'content'", "'Put this text'", "[VERB] http put option");
-				printf("%-15s%-15s%-35s%-25s\n","-d/--delete", "'content'", "'Delete this text'", "[VERB] http delete option");
-				printf("%-15s%-15s%-35s%-25s\n","-u/--url", "'url'", "'http://localhost:8080'", "[URL] http url option");
-				printf("%50s\n", "'http://www.cnn.com'");
-				printf("%53s\n\n", "'http://IPADDRESS:PORT'");
-				printf("%44s\n", "EXAMPLE USAGE");				
-				printf("---------------------------------------------------------------------------------------------\n");
-				printf("%-20s%-30s\n","HTTP REQUEST", "COMMAND");
-				printf("---------------------------------------------------------------------------------------------\n");
-				printf("%-20s%-30s\n","HTTP GET", "./hw --url 'http://httpbin.org/get' --get");
-				printf("%-20s%-30s\n","HTTP POST", "./hw --url 'http://httpbin.org/post' --post 'This text gets posted!'");
-				printf("%-20s%-30s\n","HTTP PUT", "./hw --url 'http://httpbin.org/put --put 'This text gets put!'");
-				printf("%-20s%-30s\n","HTTP DELETE", "./hw --url 'http://httpbin.org/delete' --delete 'This text gets deleted!'");
+				printf("\n[HELP] Usage: ./test [URL] 'url' [VERB] 'content'\n\n");
+				printf("----------------------- HELP OPTIONS -----------------------------------------\n\n");
+				printf(" FLAGS		ARGUMENTS	EXAMPLE ARG FORMAT			SUMMARY\n");
+				printf("------------------------------------------------------------------------------\n");
+				printf("-h/--help		N/A			N/A						help options\n");
+				printf("-g/--get 		N/A			N/A						[VERB] http get option\n");
+				printf("-o/--post	'content'	'Post this stuff.'			[VERB] http post option\n");
+				printf("-p/--put 	'content'	'Put this stuff.'			[VERB] http put option\n");
+				printf("-d/--delete	'content'	'Delete this stuff/'		[VERB] http delete option\n");
+				printf("-u/--url	'url'		'http://www.cnn.com'		[URL] http url of server\n");
+				printf("						'http://localhost:PORT' \n");
+				printf("						'http://IPADDRESS:PORT'\n\n");
+				printf("------------------------------------------------------------------------------\n");
+				printf("			Example USAGE\n");
+				printf("------------------------------------------------------------------------------\n");
+				printf("HTTP GET -		./hw --url 'http://httpbin.org/get' --get\n" );
+				printf("HTTP POST -		./hw --url 'http://httpbin.org/post' --post 'Post this content'\n");
+				printf("HTTP PUT -		./hw --url 'http://httpbin.org/put' --put 'Put this content'\n");
+				printf("HTTP DELETE -	./hw --url 'http://httpbin.org/delete' --delete 'Delete this content\n\n");	
 }
 
 // function for HTTP GET

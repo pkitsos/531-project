@@ -7,7 +7,7 @@ LIBS=-lcurl -lpthread
 
 SRC=requestor.c
 OBJ=$(SRC:.c=.o)
-MAIN=test
+MAIN=hw
 
 RM=rm -rf
 
