@@ -160,6 +160,7 @@ int main(int argc, char **argv) {
 		if(c == -1)
 			break;
 
+		// switch for command line options
 		switch(c) {
 			case 'h':
 				usage();
@@ -171,7 +172,7 @@ int main(int argc, char **argv) {
 					exit(1);
 				} else {
 					uflag++;
-					//printf("[HTTP URL] url: %s\n", url);
+					printf("[HTTP URL] url: %s\n", url);
 					url = optarg;
 					break;
 				}
@@ -189,9 +190,6 @@ int main(int argc, char **argv) {
 					curl_get(url, curl, res);
 					break;	
 				}
-				//printf("[HTTP GET]\n");
-				//curl_get(url, curl, res);
-				//break;
 			case 'o':
 				if(oflag) {
 					printf("WARNING: Only one VERB option allowed!\n");
