@@ -4,6 +4,9 @@
 // ECE 531: Introduction to IoT - Dr. Lamb, Dr. Papapanagioutou
 // Assignment: Network Communication on ARM
 // Author: Panayioti Kitsos - Date: 4/18/18
+// Compile with:
+// 			Host machine: make all
+//			QEMU machine: make -f makefile-arm
 /***************************************************************************************************************************/
 #include<stdio.h>
 #include<string.h>
@@ -114,6 +117,7 @@ void curl_delete(char *url, char *content, CURL *curl, CURLcode res) {
 int main(int argc, char **argv) {
 	
 	int c;
+	int gflag = 0, uflag = 0, oflag = 0, pflag = 0, dflag = 0;
 	char *content, *url; 
 	CURL *curl;
 	CURLcode res;
@@ -152,30 +156,81 @@ int main(int argc, char **argv) {
 				usage();
 				break;
 			case 'u':
-				url = optarg;
-				printf("[HTTP URL] url: %s\n", url);
-				break;
+				if(uflag >= 1) {
+					printf("WARNING: Only URL allowed one url!\n");
+					usage();
+					exit(1);
+				} else {
+					uflag++;
+					//printf("[HTTP URL] url: %s\n", url);
+					url = optarg;
+					break;
+				}
 			case 'g':
-				printf("[HTTP GET]\n");
-				curl_get(url, curl, res);
-				break;
+				if (gflag >= 1) {
+					printf("WARNING: Only one VERB option allowed!\n");
+					usage();
+					exit(1);
+				} else {
+					gflag++;
+					pflag++;
+					oflag++;
+					dflag++;
+					printf("[HTTP GET]\n");
+					curl_get(url, curl, res);
+					break;	
+				}
+				//printf("[HTTP GET]\n");
+				//curl_get(url, curl, res);
+				//break;
 			case 'o':
-				content = optarg;
-				printf("[HTTP POST] content: %s\n", content);
-				curl_post(url, content, curl, res);
-				break;
+				if(oflag) {
+					printf("WARNING: Only one VERB option allowed!\n");
+					usage();
+					exit(1);
+				} else {
+					oflag++;
+					gflag++;
+					pflag++;
+					dflag++;
+					content = optarg;
+					printf("[HTTP POST] content: %s\n", content);
+					curl_post(url, content, curl, res);
+					break;
+				}
 			case 'p':
-				content = optarg;
-				printf("[HTTP PUT] content: %s\n", content);
-				curl_put(url, content, curl, res);
-				break;
+				if(pflag >= 1) {
+					printf("WARNING: Only one VERB option allowed!\n");
+					usage();
+					exit(1);
+				} else {
+					pflag++;
+					oflag++;
+					gflag++;
+					dflag++;
+					content = optarg;
+					printf("[HTTP PUT] content: %s\n", content);
+					curl_put(url, content, curl, res);
+					break;
+				}
 			case 'd':
-				content = optarg;
-				printf("[HTTP DELETE] content: %s\n", content);
-				curl_delete(url, content, curl, res);
-				break;
+				if(dflag >= 1) {
+					printf("WARNING: Only one VERB option allowed!\n");
+					usage();
+					exit(1);
+				} else {
+					dflag++;
+					oflag++;
+					gflag++;
+					dflag++;
+					content = optarg;
+					printf("[HTTP DELETE] content: %s\n", content);
+					curl_delete(url, content, curl, res);
+					break;
+				}
 			case '?':
-				// no command line options, error already raised by getopt_long 
+				// invalid command line options, error already raised by getopt_long 
+				printf("WARNING: Invalid command line options!\n");
 				usage();
 				break;
 			default:
