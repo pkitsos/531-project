@@ -1,7 +1,7 @@
 /***************************************************************************************************************************/
 // University of New Mexico - School of Engineering
 // Department of Electical and Computer Engineering
-// ECE 531: Introduction to IoT - Dr. Lamb, Dr. Papapanagioutou
+// ECE 531: Introduction to IoT - Dr. Lamb, Dr. Papapanagiotou
 // Assignment: Network Communication on ARM
 // Author: Panayioti Kitsos - Date: 4/18/18
 // Compile with:
