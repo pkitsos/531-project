@@ -9,7 +9,7 @@
 //					gcc   -c requestor.c -o requestor.o
 //					gcc   -o hw requestor.o -L/usr/lib/x86-64-linux-gnu -lcurl -lpthread
 //			
-//			QEMU linux machine (AMD): (make -f makefile-arm)
+//			QEMU linux machine (ARM): (make -f makefile-arm)
 //					/home/USER/buildroot-2018.02/output/host/usr/bin/arm-linux-gcc --sysroot=/home/USER/buildroot-2018.02/output/staging  -c requestor.c -o requestor.o
 //					/home/USER/buildroot-2018.02/output/host/usr/bin/arm-linux-gcc --sysroot=/home/USER/buildroot-2018.02/output/staging  -o hw requestor.o  -lcurl -uClibc -lc
 //
@@ -172,8 +172,8 @@ int main(int argc, char **argv) {
 					exit(1);
 				} else {
 					uflag++;
-					printf("[HTTP URL] url: %s\n", url);
 					url = optarg;
+					printf("[HTTP URL] url: %s\n", url);
 					break;
 				}
 			case 'g':
@@ -186,6 +186,7 @@ int main(int argc, char **argv) {
 					pflag++;
 					oflag++;
 					dflag++;
+					sleep(1);
 					printf("[HTTP GET]\n");
 					curl_get(url, curl, res);
 					break;	
