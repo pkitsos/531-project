@@ -1,0 +1,43 @@
+#!/bin/sh
+
+DAEMON_NAME="sampled"
+
+# Daemon start function
+start() {
+	printf "Starting $DAEMON_NAME:"
+	/usr/sbin/$DAEMON_NAME
+	touch /var/lock/$DAEMON_NAME
+	echo "OK"
+}
+
+# Daemon stop function
+stop() {
+	printf "Stopping $DAEMON_NAME:"
+	killall $DAEMON_NAME
+	rm -f /var/lock/$DAEMON_NAME
+	echo "Ok"
+}
+
+# Daemon restart function
+restart() {
+	stop
+	start
+}
+
+# Case handling args
+case "$1" in
+	start)
+	start
+	;;
+	stop)
+	stop
+	;;
+	restart|reload)
+	restart
+	;;
+	*)
+	echo "Usage: $0 {start|stop|restart}"
+	exit 1
+esac
+
+exit $?
