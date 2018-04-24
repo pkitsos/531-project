@@ -186,7 +186,6 @@ int main(int argc, char **argv) {
 					pflag++;
 					oflag++;
 					dflag++;
-					sleep(1);
 					printf("[HTTP GET]\n");
 					curl_get(url, curl, res);
 					break;	
