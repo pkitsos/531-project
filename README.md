@@ -13,7 +13,7 @@ I implemented a C program that spawns a daemon process using fork() and effectiv
 C daemon program: /usr/sbin/sampled.c  
 Daemon bash script: /etc/init.d/S80sampled  
 
-__Cloud Integration__ 
+__Cloud Integration__   
 Now that the client side is done, I am working on implementing my host server on an AWS EC2 instance. From here, I will be configuring a REST API to allow me to interact between host and client using HTTP requests.
 
 __Thermocouple__   
